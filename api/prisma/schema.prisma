@@ -1,0 +1,46 @@
+generator client {
+    provider = "prisma-client"
+    output = "../src/generated/prisma"
+    moduleFormat = "esm"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum ProjectStatus {
+    ACTIVE
+    PAUSED
+}
+
+model User {
+    id  String  @id @default(uuid()) @db.Uuid()
+    email String @unique    @db.VarChar(254)
+    passwordHash    String @map("passwoard_hash") @db.Text()
+
+    project Project[]
+
+    createdAt   DateTime @default(now())  @map("created_at") @db.Timestamptz(3)
+    updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+    @@map("users")
+}
+
+model Project {
+    id  String      @id @default(uuid()) @db.Uuid
+    name String     @db.VarChar(100)
+    nameKey String  @map("name_key")  @db.VarChar(100)
+    description  String? @db.Text
+    status    ProjectStatus     @default(ACTIVE)
+
+    createdAt   DateTime @default(now())  @map("created_at") @db.Timestamptz(3)
+    updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+    ownerId String? @map("owner_id") @db.Uuid()
+
+    owner User?  @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+
+    @@unique([ownerId, nameKey]) //Composite Unique Constraint
+    @@index([ownerId])
+    @@map("projects")
+}

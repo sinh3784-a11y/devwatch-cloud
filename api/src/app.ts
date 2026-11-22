@@ -1,49 +1,55 @@
+
 import express from "express";
 
-import { env } from "node:process";
+import { env } from "./config/env.js";
 
-import { errorMiddleware } from "./common/middlewares/error.middleware.js";
+import { errorMiddleware } from
+  "./common/middlewares/error.middleware.js";
 
-import { notFoundMiddleware } from "./common/middlewares/not-found.middleware.js";
+import { notFoundMiddleware } from
+  "./common/middlewares/not-found.middleware.js";
+
+import { requireAuth } from
+  "./common/middlewares/auth.middleware.js";
+
+import authRoutes from "./modules/auth/auth.routes.js";
+import projectRoutes from "./modules/projects/project.routes.js";
 
 const app = express();
 
-// Security: hide Express identifier header
 app.disable("x-powered-by");
 
-//Middleware: pare JSON request bodies
-app.use(express.json({ limit: "64kb"}))
+app.use(express.json({ limit: "64kb" }));
 
-// Health check route
+// Public: Health check
 app.get("/api/v1/health", (_req, res) => {
-    res.status(200).json({
-        sucess: true,
-        message: "Devwatch Cloud API is running",
-        timestamp: new Date().toISOString(),
-    })
-})
+  res.status(200).json({
+    success: true,
+    message: "DevWatch Cloud API is running",
+  });
+});
 
-// example 
-app.get("/api/v1/info", (_req, res) => {
-    res.status(200).json({
-        sucess: true,
-        project: "DevWatch Cloud",
-        version: "1.0.0",
-        developerMode: true
-    })
-})
+// Public: Register and Login
+app.use("/api/v1/auth", authRoutes);
 
-// Test error route for development only
-if(env.NODE_ENV !== "production") {
-    app.get("/api/v1/test-error", () => {
-        throw new Error("Test unexpected server error")
-    });
+// Protected: Project Management
+app.use(
+  "/api/v1/projects",
+  requireAuth,
+  projectRoutes
+);
+
+// Development-only error test
+if (env.NODE_ENV !== "production") {
+  app.get("/api/v1/test-error", () => {
+    throw new Error("Test unexpected server error");
+  });
 }
 
-// Handle unmatched routes
+// Handle unknown routes
 app.use(notFoundMiddleware);
 
-// Handle application errors
+// Global error handling
 app.use(errorMiddleware);
 
 export default app;
