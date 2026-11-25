@@ -15,3 +15,12 @@ export const ProjectStatus = {
 } as const
 
 export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
+export const ErrorLevel = {
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  FATAL: 'FATAL'
+} as const
+
+export type ErrorLevel = (typeof ErrorLevel)[keyof typeof ErrorLevel]

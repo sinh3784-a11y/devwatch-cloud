@@ -51,3 +51,13 @@ export type User = Prisma.UserModel
  * 
  */
 export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectApiKey
+ * 
+ */
+export type ProjectApiKey = Prisma.ProjectApiKeyModel
+/**
+ * Model ErrorEvent
+ * 
+ */
+export type ErrorEvent = Prisma.ErrorEventModel

@@ -52,7 +52,9 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Project: 'Project'
+  Project: 'Project',
+  ProjectApiKey: 'ProjectApiKey',
+  ErrorEvent: 'ErrorEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,6 +96,33 @@ export const ProjectScalarFieldEnum = {
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectApiKeyScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  label: 'label',
+  keyHash: 'keyHash',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectApiKeyScalarFieldEnum = (typeof ProjectApiKeyScalarFieldEnum)[keyof typeof ProjectApiKeyScalarFieldEnum]
+
+
+export const ErrorEventScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  level: 'level',
+  source: 'source',
+  message: 'message',
+  stack: 'stack',
+  occurredAt: 'occurredAt',
+  receivedAt: 'receivedAt'
+} as const
+
+export type ErrorEventScalarFieldEnum = (typeof ErrorEventScalarFieldEnum)[keyof typeof ErrorEventScalarFieldEnum]
 
 
 export const SortOrder = {

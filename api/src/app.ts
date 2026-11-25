@@ -14,6 +14,7 @@ import { requireAuth } from
 
 import authRoutes from "./modules/auth/auth.routes.js";
 import projectRoutes from "./modules/projects/project.routes.js";
+import ingestionRouters from "./modules/ingestion/ingestion.routes.js"
 
 const app = express();
 
@@ -32,12 +33,15 @@ app.get("/api/v1/health", (_req, res) => {
 // Public: Register and Login
 app.use("/api/v1/auth", authRoutes);
 
-// Protected: Project Management
+// user jwt required
 app.use(
   "/api/v1/projects",
   requireAuth,
   projectRoutes
 );
+
+// Agent API key required by ingestion router
+app.use("/api/v1/ingest", ingestionRouters)
 
 // Development-only error test
 if (env.NODE_ENV !== "production") {

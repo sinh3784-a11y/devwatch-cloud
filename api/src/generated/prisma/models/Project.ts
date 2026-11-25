@@ -206,6 +206,8 @@ export type ProjectWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   ownerId?: Prisma.UuidNullableFilter<"Project"> | string | null
+  apiKeys?: Prisma.ProjectApiKeyListRelationFilter
+  events?: Prisma.ErrorEventListRelationFilter
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
@@ -218,6 +220,8 @@ export type ProjectOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ownerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiKeys?: Prisma.ProjectApiKeyOrderByRelationAggregateInput
+  events?: Prisma.ErrorEventOrderByRelationAggregateInput
   owner?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -234,6 +238,8 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Project"> | Date | string
   ownerId?: Prisma.UuidNullableFilter<"Project"> | string | null
+  apiKeys?: Prisma.ProjectApiKeyListRelationFilter
+  events?: Prisma.ErrorEventListRelationFilter
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "ownerId_nameKey">
 
@@ -273,6 +279,8 @@ export type ProjectCreateInput = {
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  apiKeys?: Prisma.ProjectApiKeyCreateNestedManyWithoutProjectInput
+  events?: Prisma.ErrorEventCreateNestedManyWithoutProjectInput
   owner?: Prisma.UserCreateNestedOneWithoutProjectInput
 }
 
@@ -285,6 +293,8 @@ export type ProjectUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ownerId?: string | null
+  apiKeys?: Prisma.ProjectApiKeyUncheckedCreateNestedManyWithoutProjectInput
+  events?: Prisma.ErrorEventUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -295,6 +305,8 @@ export type ProjectUpdateInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ProjectApiKeyUpdateManyWithoutProjectNestedInput
+  events?: Prisma.ErrorEventUpdateManyWithoutProjectNestedInput
   owner?: Prisma.UserUpdateOneWithoutProjectNestedInput
 }
 
@@ -307,6 +319,8 @@ export type ProjectUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeys?: Prisma.ProjectApiKeyUncheckedUpdateManyWithoutProjectNestedInput
+  events?: Prisma.ErrorEventUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -389,6 +403,11 @@ export type ProjectMinOrderByAggregateInput = {
   ownerId?: Prisma.SortOrder
 }
 
+export type ProjectScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput
+  isNot?: Prisma.ProjectWhereInput
+}
+
 export type ProjectCreateNestedManyWithoutOwnerInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutOwnerInput, Prisma.ProjectUncheckedCreateWithoutOwnerInput> | Prisma.ProjectCreateWithoutOwnerInput[] | Prisma.ProjectUncheckedCreateWithoutOwnerInput[]
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOwnerInput | Prisma.ProjectCreateOrConnectWithoutOwnerInput[]
@@ -439,6 +458,34 @@ export type EnumProjectStatusFieldUpdateOperationsInput = {
   set?: $Enums.ProjectStatus
 }
 
+export type ProjectCreateNestedOneWithoutApiKeysInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutApiKeysInput, Prisma.ProjectUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutApiKeysInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutApiKeysNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutApiKeysInput, Prisma.ProjectUncheckedCreateWithoutApiKeysInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutApiKeysInput
+  upsert?: Prisma.ProjectUpsertWithoutApiKeysInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutApiKeysInput, Prisma.ProjectUpdateWithoutApiKeysInput>, Prisma.ProjectUncheckedUpdateWithoutApiKeysInput>
+}
+
+export type ProjectCreateNestedOneWithoutEventsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEventsInput, Prisma.ProjectUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEventsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutEventsInput, Prisma.ProjectUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutEventsInput
+  upsert?: Prisma.ProjectUpsertWithoutEventsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutEventsInput, Prisma.ProjectUpdateWithoutEventsInput>, Prisma.ProjectUncheckedUpdateWithoutEventsInput>
+}
+
 export type ProjectCreateWithoutOwnerInput = {
   id?: string
   name: string
@@ -447,6 +494,8 @@ export type ProjectCreateWithoutOwnerInput = {
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  apiKeys?: Prisma.ProjectApiKeyCreateNestedManyWithoutProjectInput
+  events?: Prisma.ErrorEventCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutOwnerInput = {
@@ -457,6 +506,8 @@ export type ProjectUncheckedCreateWithoutOwnerInput = {
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  apiKeys?: Prisma.ProjectApiKeyUncheckedCreateNestedManyWithoutProjectInput
+  events?: Prisma.ErrorEventUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOwnerInput = {
@@ -499,6 +550,134 @@ export type ProjectScalarWhereInput = {
   ownerId?: Prisma.UuidNullableFilter<"Project"> | string | null
 }
 
+export type ProjectCreateWithoutApiKeysInput = {
+  id?: string
+  name: string
+  nameKey: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  events?: Prisma.ErrorEventCreateNestedManyWithoutProjectInput
+  owner?: Prisma.UserCreateNestedOneWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutApiKeysInput = {
+  id?: string
+  name: string
+  nameKey: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId?: string | null
+  events?: Prisma.ErrorEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutApiKeysInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutApiKeysInput, Prisma.ProjectUncheckedCreateWithoutApiKeysInput>
+}
+
+export type ProjectUpsertWithoutApiKeysInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutApiKeysInput, Prisma.ProjectUncheckedUpdateWithoutApiKeysInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutApiKeysInput, Prisma.ProjectUncheckedCreateWithoutApiKeysInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutApiKeysInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutApiKeysInput, Prisma.ProjectUncheckedUpdateWithoutApiKeysInput>
+}
+
+export type ProjectUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameKey?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.ErrorEventUpdateManyWithoutProjectNestedInput
+  owner?: Prisma.UserUpdateOneWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutApiKeysInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameKey?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  events?: Prisma.ErrorEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutEventsInput = {
+  id?: string
+  name: string
+  nameKey: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  apiKeys?: Prisma.ProjectApiKeyCreateNestedManyWithoutProjectInput
+  owner?: Prisma.UserCreateNestedOneWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutEventsInput = {
+  id?: string
+  name: string
+  nameKey: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ownerId?: string | null
+  apiKeys?: Prisma.ProjectApiKeyUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutEventsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEventsInput, Prisma.ProjectUncheckedCreateWithoutEventsInput>
+}
+
+export type ProjectUpsertWithoutEventsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutEventsInput, Prisma.ProjectUncheckedUpdateWithoutEventsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutEventsInput, Prisma.ProjectUncheckedCreateWithoutEventsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutEventsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutEventsInput, Prisma.ProjectUncheckedUpdateWithoutEventsInput>
+}
+
+export type ProjectUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameKey?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ProjectApiKeyUpdateManyWithoutProjectNestedInput
+  owner?: Prisma.UserUpdateOneWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nameKey?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiKeys?: Prisma.ProjectApiKeyUncheckedUpdateManyWithoutProjectNestedInput
+}
+
 export type ProjectCreateManyOwnerInput = {
   id?: string
   name: string
@@ -517,6 +696,8 @@ export type ProjectUpdateWithoutOwnerInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ProjectApiKeyUpdateManyWithoutProjectNestedInput
+  events?: Prisma.ErrorEventUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutOwnerInput = {
@@ -527,6 +708,8 @@ export type ProjectUncheckedUpdateWithoutOwnerInput = {
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  apiKeys?: Prisma.ProjectApiKeyUncheckedUpdateManyWithoutProjectNestedInput
+  events?: Prisma.ErrorEventUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
@@ -540,6 +723,44 @@ export type ProjectUncheckedUpdateManyWithoutOwnerInput = {
 }
 
 
+/**
+ * Count Type ProjectCountOutputType
+ */
+
+export type ProjectCountOutputType = {
+  apiKeys: number
+  events: number
+}
+
+export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  apiKeys?: boolean | ProjectCountOutputTypeCountApiKeysArgs
+  events?: boolean | ProjectCountOutputTypeCountEventsArgs
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectCountOutputType
+   */
+  select?: Prisma.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountApiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectApiKeyWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ErrorEventWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -550,7 +771,10 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   ownerId?: boolean
+  apiKeys?: boolean | Prisma.Project$apiKeysArgs<ExtArgs>
+  events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
   owner?: boolean | Prisma.Project$ownerArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -590,7 +814,10 @@ export type ProjectSelectScalar = {
 
 export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "nameKey" | "description" | "status" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  apiKeys?: boolean | Prisma.Project$apiKeysArgs<ExtArgs>
+  events?: boolean | Prisma.Project$eventsArgs<ExtArgs>
   owner?: boolean | Prisma.Project$ownerArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.Project$ownerArgs<ExtArgs>
@@ -602,6 +829,8 @@ export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {
+    apiKeys: Prisma.$ProjectApiKeyPayload<ExtArgs>[]
+    events: Prisma.$ErrorEventPayload<ExtArgs>[]
     owner: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1007,6 +1236,8 @@ readonly fields: ProjectFieldRefs;
  */
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  apiKeys<T extends Prisma.Project$apiKeysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$apiKeysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectApiKeyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  events<T extends Prisma.Project$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ErrorEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   owner<T extends Prisma.Project$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1443,6 +1674,54 @@ export type ProjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Projects to delete.
    */
   limit?: number
+}
+
+/**
+ * Project.apiKeys
+ */
+export type Project$apiKeysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectApiKey
+   */
+  select?: Prisma.ProjectApiKeySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProjectApiKey
+   */
+  omit?: Prisma.ProjectApiKeyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectApiKeyInclude<ExtArgs> | null
+  where?: Prisma.ProjectApiKeyWhereInput
+  orderBy?: Prisma.ProjectApiKeyOrderByWithRelationInput | Prisma.ProjectApiKeyOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectApiKeyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectApiKeyScalarFieldEnum | Prisma.ProjectApiKeyScalarFieldEnum[]
+}
+
+/**
+ * Project.events
+ */
+export type Project$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ErrorEvent
+   */
+  select?: Prisma.ErrorEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ErrorEvent
+   */
+  omit?: Prisma.ErrorEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ErrorEventInclude<ExtArgs> | null
+  where?: Prisma.ErrorEventWhereInput
+  orderBy?: Prisma.ErrorEventOrderByWithRelationInput | Prisma.ErrorEventOrderByWithRelationInput[]
+  cursor?: Prisma.ErrorEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ErrorEventScalarFieldEnum | Prisma.ErrorEventScalarFieldEnum[]
 }
 
 /**

@@ -398,7 +398,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Project: 'Project'
+  Project: 'Project',
+  ProjectApiKey: 'ProjectApiKey',
+  ErrorEvent: 'ErrorEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "project"
+    modelProps: "user" | "project" | "projectApiKey" | "errorEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -566,6 +568,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProjectApiKey: {
+      payload: Prisma.$ProjectApiKeyPayload<ExtArgs>
+      fields: Prisma.ProjectApiKeyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProjectApiKeyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProjectApiKeyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        findFirst: {
+          args: Prisma.ProjectApiKeyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProjectApiKeyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        findMany: {
+          args: Prisma.ProjectApiKeyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>[]
+        }
+        create: {
+          args: Prisma.ProjectApiKeyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        createMany: {
+          args: Prisma.ProjectApiKeyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProjectApiKeyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>[]
+        }
+        delete: {
+          args: Prisma.ProjectApiKeyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        update: {
+          args: Prisma.ProjectApiKeyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProjectApiKeyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProjectApiKeyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProjectApiKeyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProjectApiKeyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectApiKeyPayload>
+        }
+        aggregate: {
+          args: Prisma.ProjectApiKeyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProjectApiKey>
+        }
+        groupBy: {
+          args: Prisma.ProjectApiKeyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectApiKeyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProjectApiKeyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProjectApiKeyCountAggregateOutputType> | number
+        }
+      }
+    }
+    ErrorEvent: {
+      payload: Prisma.$ErrorEventPayload<ExtArgs>
+      fields: Prisma.ErrorEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ErrorEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ErrorEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        findFirst: {
+          args: Prisma.ErrorEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ErrorEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        findMany: {
+          args: Prisma.ErrorEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>[]
+        }
+        create: {
+          args: Prisma.ErrorEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        createMany: {
+          args: Prisma.ErrorEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ErrorEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>[]
+        }
+        delete: {
+          args: Prisma.ErrorEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        update: {
+          args: Prisma.ErrorEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.ErrorEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ErrorEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ErrorEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.ErrorEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ErrorEventPayload>
+        }
+        aggregate: {
+          args: Prisma.ErrorEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateErrorEvent>
+        }
+        groupBy: {
+          args: Prisma.ErrorEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ErrorEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ErrorEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ErrorEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -628,6 +778,33 @@ export const ProjectScalarFieldEnum = {
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectApiKeyScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  label: 'label',
+  keyHash: 'keyHash',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectApiKeyScalarFieldEnum = (typeof ProjectApiKeyScalarFieldEnum)[keyof typeof ProjectApiKeyScalarFieldEnum]
+
+
+export const ErrorEventScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  level: 'level',
+  source: 'source',
+  message: 'message',
+  stack: 'stack',
+  occurredAt: 'occurredAt',
+  receivedAt: 'receivedAt'
+} as const
+
+export type ErrorEventScalarFieldEnum = (typeof ErrorEventScalarFieldEnum)[keyof typeof ErrorEventScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -699,6 +876,20 @@ export type EnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'ProjectStatus[]'
  */
 export type ListEnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ErrorLevel'
+ */
+export type EnumErrorLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ErrorLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'ErrorLevel[]'
+ */
+export type ListEnumErrorLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ErrorLevel[]'>
     
 
 
@@ -868,6 +1059,8 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   project?: Prisma.ProjectOmit
+  projectApiKey?: Prisma.ProjectApiKeyOmit
+  errorEvent?: Prisma.ErrorEventOmit
 }
 
 /* Types for Logging */
